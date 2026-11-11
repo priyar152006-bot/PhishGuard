@@ -1,2 +1,3 @@
-# PhishGuard
-AI-Based Phishing Website Detection System
+Project Documentation
+You can view the complete PhishGuard project report here:
+PROJECT_REPORT.pdf
