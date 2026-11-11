@@ -2,4 +2,4 @@
 
 You can view the complete PhishGuard project report here:
 
-[View Project Report (PDF)](PROJECT REPORT.pdf)
+[View Project Report](<PROJECT REPORT.pdf>)
