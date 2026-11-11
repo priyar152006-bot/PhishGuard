@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard • Analysis Report</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/favicon.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='report.css') }}">
+</head>
+<body>
+<header class="report-header">
+    <div class="brand"><i class="fa-solid fa-shield-halved"></i><span>Phish<span>Guard</span></span></div>
+    <div class="header-caption"><i class="fa-solid fa-microchip"></i> AI Powered Security Analysis</div>
+</header>
+
+<main class="report-wrap">
+    <div class="report-title">
+        <span class="eyebrow">WEBSITE ANALYSIS</span>
+        <h1>Security Intelligence Report</h1>
+        <p>Clear, readable website intelligence from PhishGuard's analysis engine.</p>
+    </div>
+
+    {% if error %}
+    <section class="report-card error-card">
+        <div class="card-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+        <div class="card-body">
+            <span class="card-number">ERROR</span>
+            <h2>Unable to complete analysis</h2>
+            <p>{{ error }}</p>
+            <p class="muted">Please check the URL and try again.</p>
+        </div>
+    </section>
+    {% else %}
+
+    <!-- BOX 1 -->
+    <section class="report-card detail-card c1">
+        <div class="card-icon blue"><i class="fa-solid fa-globe"></i></div>
+        <div class="card-body">
+            <span class="card-number">01</span>
+            <h2>Website Information</h2>
+            <p class="card-intro">Basic identity and technical information that PhishGuard could verify for the submitted website.</p>
+
+            <div class="url-display"><i class="fa-solid fa-link"></i> {{ entered_url }}</div>
+            <button class="copy-report-url" onclick="copyReportURL()"><i class="fa-solid fa-copy"></i> Copy URL</button>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <span><i class="fa-solid fa-globe"></i> Website Name</span>
+                    <strong>{{ analysis.website_name }}</strong>
+                </div>
+                <div class="info-item">
+                    <span><i class="fa-solid fa-calendar-days"></i> Domain Age</span>
+                    <strong>{{ analysis.website_age }}</strong>
+                    <small>Registration: {{ analysis.registration_date }}</small>
+                </div>
+                <div class="info-item">
+                    <span><i class="fa-solid fa-network-wired"></i> IP Address</span>
+                    <strong>{{ analysis.ip_address }}</strong>
+                    <small>DNS status: {{ analysis.dns_status }}</small>
+                </div>
+                <div class="info-item wide-item">
+                    <span><i class="fa-solid fa-layer-group"></i> Discoverable Pages / Tabs</span>
+                    <strong>{{ analysis.page_count }}</strong>
+                    <small>{{ analysis.page_explanation }}</small>
+                    {% if analysis.page_names %}
+                    <div class="tag-list">
+                        {% for page in analysis.page_names[:18] %}<span>{{ page }}</span>{% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOX 2 -->
+    <section class="report-card profile-card c2">
+        <div class="card-icon purple"><i class="fa-solid fa-bullseye"></i></div>
+        <div class="card-body">
+            <span class="card-number">02</span>
+            <h2>Website Purpose &amp; Users</h2>
+            <p class="card-intro">This section explains what the website appears to be mainly used for and which people or groups it is intended to serve, using the public information retrieved during the scan.</p>
+
+            <div class="profile-block">
+                <div class="profile-heading"><i class="fa-solid fa-compass"></i><span>Mainly Used For</span></div>
+                <h3>{{ analysis.main_purpose }}</h3>
+                <p>{{ analysis.purpose_explanation }}</p>
+            </div>
+
+            <div class="profile-block">
+                <div class="profile-heading"><i class="fa-solid fa-users"></i><span>Who Can Use It?</span></div>
+                <h3>{{ analysis.target_users }}</h3>
+                <p>{{ analysis.users_explanation }}</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BOX 3 -->
+    <section class="report-card result-card {% if analysis.classification == 'Safe' %}result-safe{% else %}result-danger{% endif %} c3">
+        <div class="card-icon {% if analysis.classification == 'Safe' %}green{% else %}red{% endif %}"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="card-body">
+            <span class="card-number">03</span>
+            <h2>Why Was This Classified This Way?</h2>
+            <p class="card-intro">PhishGuard combines machine-learning signals with live technical checks. The result below is an evidence-based automated assessment, not a guarantee of safety.</p>
+
+            <div class="prediction-banner">
+                <div>
+                    <span>Prediction Result</span>
+                    <strong><i class="fa-solid {% if analysis.classification == 'Safe' %}fa-circle-check{% else %}fa-circle-exclamation{% endif %}"></i> {{ 'Legitimate Website' if analysis.classification == 'Safe' else 'Phishing Website' }}</strong>
+                </div>
+                <b>{{ '%.2f'|format(analysis.confidence) }}%</b>
+            </div>
+
+            <div class="confidence-panel">
+                <div class="donut {% if analysis.classification == 'Safe' %}donut-safe{% else %}donut-danger{% endif %}" style="--confidence: {{ analysis.confidence }};">
+                    <div><strong>{{ '%.2f'|format(analysis.confidence) }}%</strong><small>CONFIDENCE</small></div>
+                </div>
+                <div class="confidence-text">
+                    <h3>Detection Confidence</h3>
+                    <p>{{ analysis.confidence_explanation }}</p>
+                    <div class="score-row"><span>Legitimate signal</span><strong>{{ '%.2f'|format(analysis.safe_value) }}%</strong></div>
+                    <div class="score-track"><span style="width: {{ analysis.safe_value }}%"></span></div>
+                    <div class="score-row"><span>Phishing risk</span><strong>{{ '%.2f'|format(analysis.phishing_value) }}%</strong></div>
+                    <div class="score-track danger-track"><span style="width: {{ analysis.phishing_value }}%"></span></div>
+                </div>
+            </div>
+
+            <div class="reason-box">
+                <div class="reason-title"><i class="fa-solid fa-magnifying-glass"></i> Analysis Explanation</div>
+                <p>{{ analysis.final_reason }}</p>
+                <ul>
+                    {% for reason in analysis.reasons %}<li>{{ reason }}</li>{% endfor %}
+                </ul>
+            </div>
+
+            <div class="security-summary">
+                <div><span>HTTPS</span><strong>{{ analysis.https_status }}</strong></div>
+                <div><span>HTTP Status</span><strong>{{ analysis.http_status }}</strong></div>
+                <div><span>Domain</span><strong>{{ analysis.domain }}</strong></div>
+                <div><span>ML Phishing Signal</span><strong>{{ analysis.ml_phishing }}%</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-note"><i class="fa-solid fa-shield-halved"></i><b>Stay Safe • Think Before You Click • Protect Yourself</b><span>PhishGuard uses multiple signals and states when information could not be verified.</span></div>
+    {% endif %}
+</main>
+<script>
+function copyReportURL(){
+    navigator.clipboard.writeText({{ entered_url|tojson }}).then(()=>{
+        const b=document.querySelector('.copy-report-url');
+        b.innerHTML='<i class="fa-solid fa-check"></i> Copied';
+        setTimeout(()=>b.innerHTML='<i class="fa-solid fa-copy"></i> Copy URL',1800);
+    });
+}
+</script>
+</body>
+</html>

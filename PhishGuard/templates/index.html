@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PhishGuard</title>
+
+    <link rel="icon" href="{{ url_for('static', filename='image/favicon.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <span>PhishGuard</span>
+
+        </div>
+
+        <ul class="nav-links">
+
+            <a href="#">OVERVIEW</a>
+
+            <a href="#features">CAPABILITIES</a>
+
+            <a href="/detector" target="_blank" rel="noopener">THREAT DETECTOR</a>
+
+            <a href="/history" target="_blank" rel="noopener">HISTORY</a>
+
+            <a href="#process">METHODOLOGY</a>
+
+            <a href="#review">REVIEWS</a>
+
+            <a href="#about">ABOUT US</a>
+
+        </ul>
+</nav>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <div class="hero-left" data-aos="fade-right">
+
+            <h1>
+
+                Protect Yourself From
+
+                <span>Phishing Website</span>
+
+            </h1>
+
+            <p>
+
+                PhishGuard AI is a cyber intelligence platform that
+                inspects suspicious URLs using Machine Learning,
+                delivering instant threat detection and intelligent
+                security insights before users interact with a website.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/detector" class="primary-btn" target="_blank" rel="noopener">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    Scan Website
+
+                </a>
+
+                <a href="/search" class="primary-btn" target="_blank" rel="noopener">
+
+                    <i class="fa-solid fa-globe"></i>
+
+                    Search Website
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-right" data-aos="fade-left">
+
+            <img
+                src="{{ url_for('static', filename='image/cyber-security.png') }}"
+                alt="Cyber Security">
+
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= FEATURES ================= -->
+
+<section id="features" class="features">
+
+    <div class="section-title" data-aos="fade-up">
+
+        <h2>Why Choose PhishGuard?</h2>
+
+        <p>
+            AI Powered Security Solution with Modern Technology
+        </p>
+
+    </div>
+
+
+    <div class="feature-container">
+
+
+        <div class="feature-card" data-aos="zoom-in">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <h3>Lightning Fast</h3>
+
+            <p>
+                Analyze website URLs within seconds using our optimized
+                Machine Learning algorithm.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card"
+             data-aos="zoom-in"
+             data-aos-delay="100">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-brain"></i>
+            </div>
+
+            <h3>AI Powered</h3>
+
+            <p>
+                Powered by Artificial Intelligence and Machine Learning
+                for accurate phishing prediction.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card"
+             data-aos="zoom-in"
+             data-aos-delay="200">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+            <h3>Maximum Security</h3>
+
+            <p>
+                Protect your personal information from fake websites
+                and cyber attacks.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card"
+             data-aos="zoom-in"
+             data-aos-delay="300">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-chart-pie"></i>
+            </div>
+
+            <h3>Visual Threat Report</h3>
+
+<p>
+    Interactive threat score and security insights
+    make prediction results easy to understand.
+</p>
+
+        </div>
+
+
+        <div class="feature-card"
+             data-aos="zoom-in"
+             data-aos-delay="400">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+
+            <h3>Privacy First</h3>
+
+            <p>
+                Your entered URLs are never stored permanently and
+                remain completely private.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card"
+             data-aos="zoom-in"
+             data-aos-delay="500">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-globe"></i>
+            </div>
+
+            <h3>24 × 7 Protection</h3>
+
+            <p>
+                Scan websites anytime from anywhere with continuous
+                AI powered monitoring.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card"
+             data-aos="zoom-in"
+             data-aos-delay="600">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <h3>Real-Time Detection</h3>
+
+            <p>
+                Detect phishing websites instantly using real-time
+                Machine Learning analysis with high prediction accuracy.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card"
+             data-aos="zoom-in"
+             data-aos-delay="700">
+
+            <div class="feature-icon">
+                <i class="fa-solid fa-file-shield"></i>
+            </div>
+
+            <h3>Safe Browsing Advice</h3>
+
+            <p>
+                Provides security recommendations and safe browsing
+                tips after every website analysis.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="why-us">
+
+    <div class="left-side" data-aos="fade-right">
+
+        <img
+            src="{{ url_for('static', filename='image/security-dashboard.png') }}"
+            alt="Security Dashboard">
+
+    </div>
+
+
+    <div class="right-side" data-aos="fade-left">
+
+        <h2>
+            Why Trust PhishGuard?
+        </h2>
+
+
+        <div class="why-item">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+
+                <h3>Advanced AI Detection</h3>
+
+                <p>
+                    Machine Learning detects phishing websites with
+                    high accuracy.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="why-item">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+
+                <h3>Real-Time Analysis</h3>
+
+                <p>
+                    Website URLs are analyzed instantly without delays.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="why-item">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+
+                <h3>Privacy Protection</h3>
+
+                <p>
+                    Your URLs are processed securely and never stored
+                    permanently.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="why-item">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <div>
+
+                <h3>Professional Reports</h3>
+
+                <p>
+                    Visual charts and prediction confidence make
+                    results easy to understand.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= TESTIMONIALS ================= -->
+
+<section id="review" class="testimonials">
+
+    <div class="section-title" data-aos="fade-up">
+
+        <h2>What Users Say</h2>
+
+        <p>Real Reviews From PhishGuard Users</p>
+
+    </div>
+
+
+    <div style="text-align:center;margin-bottom:40px;">
+
+        <a href="/review" target="_blank" rel="noopener" class="primary-btn">
+
+            <i class="fa-solid fa-pen"></i>
+
+            Write a Review
+
+        </a>
+
+    </div>
+
+
+    <div class="testimonial-grid">
+
+        {% if reviews %}
+
+            {% for item in reviews %}
+
+            <div
+                class="testimonial-card"
+                data-aos="zoom-in">
+
+
+                <div class="profile-avatar">
+
+                    {{ item[0][0]|upper }}
+
+                </div>
+
+
+                <h3>
+                    {{ item[0] }}
+                </h3>
+
+
+                <p>
+
+                    {% for i in range(item[1]) %}
+
+                        ⭐
+
+                    {% endfor %}
+
+                </p>
+
+
+                <p>
+
+                    "{{ item[2] }}"
+
+                </p>
+
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="testimonial-card">
+
+                <h3>No Reviews Yet</h3>
+
+                <p>
+                    Be the first person to review PhishGuard.
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="about">
+
+    <div
+        class="about-content"
+        data-aos="fade-up">
+
+
+        <h2>
+            About PhishGuard
+        </h2>
+
+
+        <p>
+
+            PhishGuard is an AI-powered phishing website detection
+            system built using Python, Flask, Machine Learning,
+            HTML, CSS, JavaScript and Chart.js.
+
+        </p>
+
+
+        <p>
+
+            It helps users identify phishing websites before they
+            become victims of cyber attacks.
+
+        </p>
+
+
+    </div>
+
+</section>
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-container">
+
+
+        <div class="footer-left">
+
+            <h2>
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                PhishGuard
+
+            </h2>
+
+
+            <p>
+
+                AI Powered Phishing Website Detection System.
+                Protecting users from phishing threats with
+                AI-powered website detection. Our mission is to
+                make online browsing safer by providing fast,
+                reliable, and intelligent security insights.
+
+            </p>
+
+        </div>
+
+
+        <div class="footer-center">
+
+            <h3>Quick Links</h3>
+
+            <ul>
+
+                <li>
+                    <a href="#">Overview</a>
+                </li>
+
+                <li>
+                    <a href="#features">Capabilities</a>
+                </li>
+
+                <li>
+                    <a href="/detector" target="_blank" rel="noopener">Threat Detector</a>
+                </li>
+
+                <li>
+                    <a href="/history" target="_blank" rel="noopener">History</a>
+                </li>
+
+                <li>
+                    <a href="#process">Methodology</a>
+                </li>
+
+                <li>
+                    <a href="#review">Reviews</a>
+                </li>
+
+                <li>
+                    <a href="#about">About Us</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="footer-right">
+
+            <h3>Follow Us</h3>
+
+            <div class="social-icons">
+
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+
+                <a href="#">
+                    <i class="fab fa-github"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <hr>
+
+
+    <p class="copyright">
+
+        © 2026 PhishGuard | All Rights Reserved
+
+    </p>
+
+</footer>
+
+
+<!-- ================= SCROLL TO TOP ================= -->
+
+<button id="scrollTop">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+
+<script>
+
+    AOS.init({
+
+        duration: 1000,
+
+        once: true
+
+    });
+
+</script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PhishGuard . Customer Review</title>
+
+<link rel="icon"
+href="{{ url_for('static', filename='image/favicon.png') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+:root{
+
+--bg:#060B18;
+--card:rgba(15,23,42,.82);
+--primary:#3B82F6;
+--secondary:#8B5CF6;
+--text:#ffffff;
+--text2:#CBD5E1;
+
+}
+
+body{
+
+    background:
+    linear-gradient(rgba(8,17,31,.82), rgba(8,17,31,.88)),
+    url("{{ url_for('static', filename='image/reviewbg.jpg') }}");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+
+}
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:650px;
+height:650px;
+
+background:#3B82F6;
+
+filter:blur(180px);
+
+opacity:.15;
+
+top:-250px;
+left:-200px;
+
+animation:moveLeft 10s infinite ease-in-out;
+
+z-index:-1;
+
+}
+
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:650px;
+height:650px;
+
+background:#8B5CF6;
+
+filter:blur(180px);
+
+opacity:.15;
+
+bottom:-250px;
+right:-200px;
+
+animation:moveRight 10s infinite ease-in-out;
+
+z-index:-1;
+
+}
+
+@keyframes moveLeft{
+
+0%,100%{
+
+transform:translate(0,0);
+
+}
+
+50%{
+
+transform:translate(70px,40px);
+
+}
+
+}
+
+@keyframes moveRight{
+
+0%,100%{
+
+transform:translate(0,0);
+
+}
+
+50%{
+
+transform:translate(-70px,-40px);
+
+}
+
+}
+
+.review-card{
+
+    width:700px;
+
+    background:rgba(15,23,42,.78);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(59,130,246,.30);
+
+    border-radius:28px;
+
+    padding:45px;
+
+    box-shadow:
+        0 0 25px rgba(59,130,246,.20),
+        0 20px 60px rgba(0,0,0,.55);
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+.logo{
+
+display:flex;
+justify-content:center;
+margin-bottom:20px;
+
+}
+
+.logo img{
+
+width:95px;
+
+filter:drop-shadow(0 0 25px rgba(59,130,246,.5));
+
+animation:float 4s infinite ease-in-out;
+
+}
+
+@keyframes float{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+}
+
+h1{
+
+color:#fff;
+
+text-align:center;
+
+font-size:34px;
+
+margin-bottom:10px;
+
+font-weight:700;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+color:#9CA3AF;
+
+margin-bottom:35px;
+
+font-size:15px;
+
+line-height:1.7;
+
+}
+
+label{
+
+display:block;
+
+margin-top:18px;
+margin-bottom:8px;
+
+font-weight:600;
+
+color:white;
+
+}
+
+input,
+textarea,
+select{
+
+width:100%;
+
+padding:16px 18px;
+
+border-radius:14px;
+
+border:1px solid transparent;
+
+background:#17233C;
+
+color:white;
+
+font-size:15px;
+
+outline:none;
+
+transition:.35s;
+
+}
+
+input::placeholder,
+textarea::placeholder{
+
+color:#9CA3AF;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+
+border-color:#3B82F6;
+
+box-shadow:0 0 0 4px rgba(59,130,246,.15);
+
+}
+
+textarea{
+
+height:180px;
+
+resize:none;
+
+}
+
+button{
+
+margin-top:35px;
+
+width:100%;
+
+padding:17px;
+
+border:none;
+
+border-radius:15px;
+
+cursor:pointer;
+
+font-size:17px;
+
+font-weight:700;
+
+color:white;
+
+background:linear-gradient(135deg,#3B82F6,#8B5CF6);
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(59,130,246,.35);
+
+}
+
+button:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 25px 45px rgba(59,130,246,.45);
+
+}
+
+.back-btn{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+margin-top:25px;
+
+text-decoration:none;
+
+color:#CBD5E1;
+
+transition:.3s;
+
+}
+
+.back-btn:hover{
+
+color:#3B82F6;
+
+}
+
+@media(max-width:768px){
+
+.review-card{
+
+padding:30px;
+
+}
+
+h1{
+
+font-size:28px;
+
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="review-card">
+
+<div class="logo">
+
+<img src="{{ url_for('static', filename='image/favicon.png') }}" alt="PhishGuard Logo">
+
+</div>
+
+<h1>
+
+Write Your Review
+
+</h1>
+
+<p class="subtitle">
+
+Your feedback helps us improve PhishGuard and provide better phishing detection for everyone.
+
+</p>
+
+{% if submitted %}
+<div style="margin:-10px 0 20px;padding:14px 16px;border-radius:12px;background:rgba(0,208,133,.10);border:1px solid rgba(0,220,145,.35);color:#25dc94;text-align:center;font-weight:600;">
+<i class="fa-solid fa-circle-check"></i> Thank you! Your review has been submitted successfully.
+</div>
+{% endif %}
+
+<form action="/submit_review" method="POST">
+
+<label>
+
+<i class="fa-solid fa-user"></i>
+
+Your Name
+
+</label>
+
+<input
+type="text"
+name="name"
+placeholder="Enter your name"
+required>
+
+<label>
+
+<i class="fa-solid fa-envelope"></i>
+
+Email (Optional)
+
+</label>
+
+<input
+type="email"
+name="email"
+placeholder="Enter your email">
+
+<label>
+
+<i class="fa-solid fa-star"></i>
+
+Rating
+
+</label>
+
+<select name="rating" required>
+
+<option value="">Select Rating</option>
+
+<option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+
+<option value="4">⭐⭐⭐⭐ Very Good</option>
+
+<option value="3">⭐⭐⭐ Good</option>
+
+<option value="2">⭐⭐ Fair</option>
+
+<option value="1">⭐ Poor</option>
+
+</select>
+
+<label>
+
+<i class="fa-solid fa-comment"></i>
+
+Your Review
+
+</label>
+
+<textarea
+name="review"
+placeholder="Share your experience with PhishGuard..."
+required></textarea>
+
+<button type="submit">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+Submit Review
+
+</button>
+
+</form>
+
+<a href="/" class="back-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Home
+
+</a>
+
+</div>
+<script>
+
+// Smooth fade animation after page load
+window.addEventListener("load", () => {
+    document.querySelector(".review-card").style.opacity = "1";
+});
+
+// Form Validation
+document.querySelector("form").addEventListener("submit", function(e){
+
+    const name = document.querySelector("input[name='name']").value.trim();
+    const review = document.querySelector("textarea").value.trim();
+    const rating = document.querySelector("select").value;
+
+    if(name === ""){
+        alert("Please enter your name.");
+        e.preventDefault();
+        return;
+    }
+
+    if(rating === ""){
+        alert("Please select a rating.");
+        e.preventDefault();
+        return;
+    }
+
+    if(review.length < 10){
+        alert("Review should contain at least 10 characters.");
+        e.preventDefault();
+        return;
+    }
+
+});
+
+</script>
+
+</body>
+</html>

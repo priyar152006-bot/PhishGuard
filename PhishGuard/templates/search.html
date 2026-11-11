@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Websites | PhishGuard</title>
+<link rel="icon" href="{{ url_for('static', filename='image/favicon.png') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<style>
+.search-page{min-height:100vh;padding:70px 8%;background:linear-gradient(135deg,#06101f,#0f172a 55%,#111827);color:#fff}.search-header{text-align:center;max-width:850px;margin:0 auto 35px}.search-header h1{font-size:44px;margin:0 0 10px}.search-header p{color:#aab7ca;margin:0}.search-box{max-width:850px;margin:0 auto 42px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:12px;border-radius:18px;display:flex;gap:10px;backdrop-filter:blur(14px)}.search-box input{flex:1;border:0;outline:0;background:#fff;color:#1f2937;border-radius:12px;padding:17px 20px;font-size:16px}.search-box button{border:0;border-radius:12px;padding:0 28px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-weight:700;font-size:15px;cursor:pointer}.results{max-width:950px;margin:auto}.results-title{margin-bottom:18px;color:#cbd5e1}.result-card{display:block;text-decoration:none;color:inherit;background:rgba(15,23,42,.78);border:1px solid rgba(59,130,246,.18);border-radius:18px;padding:22px 24px;margin:14px 0;transition:.25s}.result-card:hover{transform:translateY(-3px);border-color:rgba(96,165,250,.6);box-shadow:0 14px 35px rgba(0,0,0,.28)}.result-card h2{font-size:19px;margin:0 0 7px;color:#fff}.result-url{font-size:13px;color:#60a5fa;word-break:break-all;margin-bottom:9px}.result-card p{margin:0;color:#aebbd0;line-height:1.6;font-size:14px}.error-search{border:1px solid rgba(248,113,113,.35);}.empty{text-align:center;padding:45px 20px;color:#aab7ca;background:rgba(255,255,255,.05);border-radius:18px}.back{display:inline-flex;margin:0 auto 35px;color:#cbd5e1;text-decoration:none;gap:8px}.back:hover{color:#fff}@media(max-width:650px){.search-page{padding:45px 5%}.search-header h1{font-size:32px}.search-box{flex-direction:column}.search-box button{height:52px}.search-box input{min-height:52px}}
+</style>
+</head>
+<body>
+<section class="search-page">
+<a class="back" href="/" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-left"></i> Back to PhishGuard</a>
+<div class="search-header"><h1><i class="fa-solid fa-globe"></i> Search Websites</h1><p>Search the web for websites, topics, services and information.</p></div>
+<form class="search-box" action="/search" method="GET">
+<input type="text" name="q" value="{{ query }}" placeholder="Search websites..." autocomplete="off" required>
+<button type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+</form>
+<div class="results">
+{% if query %}<div class="results-title"><strong>Search results for:</strong> {{ query }}</div>{% endif %}
+{% if search_error %}
+<div class="empty error-search"><i class="fa-solid fa-triangle-exclamation"></i><h3>Invalid Search</h3><p>{{ search_error }}</p></div>
+{% elif results %}
+{% for result in results %}
+<a class="result-card" href="{{ result.url }}" target="_blank" rel="noopener noreferrer">
+<h2>{{ result.title }}</h2><div class="result-url">{{ result.url }}</div>{% if result.snippet %}<p>{{ result.snippet }}</p>{% endif %}
+</a>
+{% endfor %}
+{% elif query %}
+<div class="empty"><i class="fa-solid fa-circle-exclamation"></i><h3>No results found</h3><p>Try a different search phrase.</p></div>
+{% else %}
+<div class="empty"><i class="fa-solid fa-magnifying-glass"></i><h3>Start searching</h3><p>Enter what you want to find on the web.</p></div>
+{% endif %}
+</div>
+</section>
+</body>
+</html>
