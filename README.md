@@ -1,5 +1,10 @@
 ## 📄 Project Documentation
 
-You can view the complete PhishGuard project report here:
+The complete project report includes:
+- Project Overview
+- System Architecture
+- Implementation Details
+- Application Screenshots
+- Results and Analysis
 
-[View Project Report](<PROJECT REPORT.pdf>)
+[View Complete Project Report (PDF)](<PROJECT REPORT.pdf>)
